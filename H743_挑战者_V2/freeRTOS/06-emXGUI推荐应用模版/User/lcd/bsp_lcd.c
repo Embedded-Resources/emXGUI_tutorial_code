@@ -287,7 +287,7 @@ void LCD_ClockConfig(void)
 	/* LTDC clock frequency = PLLLCDCLK = 27 Mhz */    
 	periph_clk_init_struct.PeriphClockSelection = RCC_PERIPHCLK_LTDC;
 	periph_clk_init_struct.PLL3.PLL3M = 25;    
-	periph_clk_init_struct.PLL3.PLL3N = 270;
+	periph_clk_init_struct.PLL3.PLL3N = 300;
 	periph_clk_init_struct.PLL3.PLL3P = 2;
 	periph_clk_init_struct.PLL3.PLL3Q = 2;
 	periph_clk_init_struct.PLL3.PLL3R = 10;  

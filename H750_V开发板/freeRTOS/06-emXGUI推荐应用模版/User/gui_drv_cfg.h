@@ -68,7 +68,7 @@
 //#define	GUI_CORE_MEM_BASE	  0xD0100000  //本例子使用RTT管理，使用内部sram，不指定地址
 
 /* GUI内核使用的存储区大小，推荐最小值为8KB */
-#define  GUI_CORE_MEM_SIZE  (32*1024) //本例子使用系统管理，在rtt系统在board.c实现，freertos在heap_4.c实现
+#define  GUI_CORE_MEM_SIZE  (64*1024) //本例子使用系统管理，在rtt系统在board.c实现，freertos在heap_4.c实现
 /* 最小分配粒度，单位为字节*/  
 #define	GUI_CORE_MEM_ALLOC_UNIT   (64)         
 
@@ -95,7 +95,7 @@
 /* 内存堆的基地址，可以为内部SRAM、外扩的SDRAM等 */  
 #define	VMEM_BASE	        (0xD0000000 + LCD_FRAME_SIZE)
 /* 内存堆的总大小，单位为字节 */ 
-#define	VMEM_SIZE	        ((64*1024*1024) - LCD_FRAME_SIZE)     
+#define	VMEM_SIZE	        ((32*1024*1024) - LCD_FRAME_SIZE)     
 /* 最小分配粒度，单位为字节*/  
 #define	VMEM_ALLOC_UNIT   (64)         //64字节   
 
@@ -119,7 +119,7 @@
 *  流设备和整体加载方式都要把这个宏设置为1
 *  使用本功能时需要把GUI_RES_DEV_EN设置为1
 */
-#define GUI_EXTERN_FONT_EN       0
+#define GUI_EXTERN_FONT_EN       1
 
 /*
 * 是否把整个外部字体数据加载至VMEM区域，初始化加载时需要较长时间，
@@ -143,13 +143,13 @@
 
 /*===========资源设备配置===gui_resource_port.c===============================================*/
 /* 是否使用资源设备 */
-#define GUI_RES_DEV_EN         0
+#define GUI_RES_DEV_EN         1
 
 /* 是否支持文件系统接口,需要移植fatfs文件系统 */
 #define GUI_FS_EN         1
 
 /* 资源所在的基地址 */
-#define GUI_RES_BASE             4096
+#define GUI_RES_BASE             (16*1024*1024)
 
 /* 存储在FLASH中的资源目录大小 */
 #define GUI_CATALOG_SIZE         (8*1024)
@@ -170,11 +170,11 @@
 /*===========是否启用各种APP===============================================*/
 
 /* 启动界面 */
-#define GUI_APP_BOOT_INTERFACE_EN     0
+#define GUI_APP_BOOT_INTERFACE_EN     1
 
 /* 资源烧录器，使能后缺少资源会自动进入资源烧录界面 */
 /* 需要sd文件系统/flash资源设备支持 */
-#define GUI_APP_RES_WRITER_EN          0
+#define GUI_APP_RES_WRITER_EN          1
 /*============================================================================*/
 
 #endif	/*__GUI_DRV_CFG_H__*/
