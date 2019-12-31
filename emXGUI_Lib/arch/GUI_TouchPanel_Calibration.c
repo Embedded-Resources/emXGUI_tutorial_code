@@ -232,8 +232,8 @@ BOOL TouchScreenCalibrate(void)
 #endif /*(GUI_TOUCHSCREEN_CALIBRATE)*/
 
 #ifdef	BOARD_V30
-#define	SCLK_GPIO	GPIOG
-#define	SCLK_BIT	9
+//#define	SCLK_GPIO	GPIOG
+//#define	SCLK_BIT	9
 #endif
 
 #ifdef	BOARD_V31
@@ -242,22 +242,22 @@ BOOL TouchScreenCalibrate(void)
 #endif
 
 // CS   - PB0
-#define	CS_0()		GPIOD->BSRRH = GPIO_Pin_7
-#define	CS_1()		GPIOD->BSRRL = GPIO_Pin_7
+//#define	CS_0()		GPIOD->BSRRH = GPIO_Pin_7
+//#define	CS_1()		GPIOD->BSRRL = GPIO_Pin_7
 
 // SCLK - PB14
-#define	SCLK_0()	SCLK_GPIO->BSRRH = (1<<SCLK_BIT)
-#define	SCLK_1()	SCLK_GPIO->BSRRL = (1<<SCLK_BIT)
+//#define	SCLK_0()	SCLK_GPIO->BSRRH = (1<<SCLK_BIT)
+//#define	SCLK_1()	SCLK_GPIO->BSRRL = (1<<SCLK_BIT)
 
 // MOSI - PB1
-#define	MOSI_0()	GPIOD->BSRRH = GPIO_Pin_6
-#define	MOSI_1()	GPIOD->BSRRL = GPIO_Pin_6
+//#define	MOSI_0()	GPIOD->BSRRH = GPIO_Pin_6
+//#define	MOSI_1()	GPIOD->BSRRL = GPIO_Pin_6
 
 // MISO - PB2
-#define	MISO()		((GPIOD->IDR & GPIO_Pin_3) != 0)
+//#define	MISO()		((GPIOD->IDR & GPIO_Pin_3) != 0)
 
 // IRQ  - PF11
-#define TP_IRQ()	((GPIOG->IDR & GPIO_Pin_8) != 0)
+//#define TP_IRQ()	((GPIOG->IDR & GPIO_Pin_8) != 0)
 
 /*=====================================================================*/
 

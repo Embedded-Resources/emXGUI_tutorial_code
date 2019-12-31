@@ -166,10 +166,8 @@ SURFACE* GUI_DisplayInit(void)
 
   }
 #endif  
-
 	while(0)
 	{ //²âÊÔ
-
 		pSurf->GL->FillArea(pSurf,20,30,128,80,pSurf->CC->MapRGB(255,255,255));
 		GUI_msleep(200);
 		pSurf->GL->FillArea(pSurf,20,30,128,80,pSurf->CC->MapRGB(255,0,0));

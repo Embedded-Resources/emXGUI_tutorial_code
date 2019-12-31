@@ -55,6 +55,7 @@ BOOL TouchDev_Init(void)
   *    @arg  TS_ACT_UP    触摸释放
   *    @arg  TS_ACT_NONE  无触摸动作
   */
+extern int GTP_Execu(uint16_t *x,uint16_t *y);
 
 BOOL TouchDev_GetPoint(POINT *pt)
 {
@@ -64,7 +65,7 @@ BOOL TouchDev_GetPoint(POINT *pt)
   static int ts_state=TS_ACT_NONE;
 
   /* 通过GTP_Execu获取触摸坐标和状态 */
-	if(GTP_Execu(&pt->x,&pt->y) > 0)
+	if(GTP_Execu((uint16_t*)&pt->x,(uint16_t*)&pt->y) > 0)
 	{
 			ts_state =TS_ACT_DOWN;
 	}
@@ -101,6 +102,7 @@ void GUI_TouchHandler(void)
 	{
 		if(TouchDev_GetPoint(&pt))
 		{
+			GUI_DEBUG("x %d,y %d",pt.x,pt.y);
 			MouseInput(pt.x,pt.y,MK_LBUTTON);
 		}
 	}
@@ -110,6 +112,7 @@ void GUI_TouchHandler(void)
 		GetCursorPos(&pt);
 		MouseInput(pt.x,pt.y,0);
 	}
+
 #else
   /* 判断触摸状态及坐标 */
 	act =TouchDev_GetPoint(&pt);
