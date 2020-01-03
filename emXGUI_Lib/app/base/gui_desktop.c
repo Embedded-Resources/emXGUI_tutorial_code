@@ -131,7 +131,7 @@ static 	 LRESULT  	desktop_proc(HWND hwnd,UINT msg,WPARAM wParam,LPARAM lParam)
     /* 桌面创建时,会产生该消息,可以在这里做一些初始化工作. */
 		case	WM_CREATE:	
 			   //创建1个20ms定时器，处理循环事件.
-				 SetTimer(hwnd,1,20,TMR_START,NULL);
+				 SetTimer(hwnd,1,30,TMR_START,NULL);
 
 				//创建App线程						
 				{
@@ -148,8 +148,7 @@ static 	 LRESULT  	desktop_proc(HWND hwnd,UINT msg,WPARAM wParam,LPARAM lParam)
 //															1*1024,  /* 任务栈大小 */
 //															NULL, /* 任务入口函数参数 */
 //															11,    /* 任务的优先级 */
-//															10); /* 任务时间片，部分任务不支持 */
-#else
+//															10); /* 任务时间片，部分任务不支持 */#else
           
         GUI_Thread_Create(gui_app_thread,  /* 任务入口函数 */
                             "GUI_APP",/* 任务名字 */
