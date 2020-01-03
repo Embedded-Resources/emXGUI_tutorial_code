@@ -143,12 +143,12 @@ static 	 LRESULT  	desktop_proc(HWND hwnd,UINT msg,WPARAM wParam,LPARAM lParam)
                               NULL, /* 任务入口函数参数 */
                               5,    /* 任务的优先级 */
                               10); /* 任务时间片，部分任务不支持 */
-				GUI_Thread_Create(gui_input_thread,  /* 任务入口函数 */
-															"gui_input_thread",/* 任务名字 */
-															1*1024,  /* 任务栈大小 */
-															NULL, /* 任务入口函数参数 */
-															11,    /* 任务的优先级 */
-															10); /* 任务时间片，部分任务不支持 */
+//				GUI_Thread_Create(gui_input_thread,  /* 任务入口函数 */
+//															"gui_input_thread",/* 任务名字 */
+//															1*1024,  /* 任务栈大小 */
+//															NULL, /* 任务入口函数参数 */
+//															11,    /* 任务的优先级 */
+//															10); /* 任务时间片，部分任务不支持 */
 #else
           
         GUI_Thread_Create(gui_app_thread,  /* 任务入口函数 */
