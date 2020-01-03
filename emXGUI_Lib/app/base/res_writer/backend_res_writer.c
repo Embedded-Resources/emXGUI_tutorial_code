@@ -12,7 +12,6 @@
 #include "gui_resource_port.h"
 #include "board.h"
 #include "ff.h"
-
 /*============================================================================*/
 
 /* 各个buff的大小（为简化直接用同一大小） */
@@ -47,8 +46,8 @@ enum
 };
 #endif
 
-
-int Buffercmp(uint8_t* pBuffer1, uint8_t* pBuffer2, uint32_t BufferLength)
+#if 0
+static int Buffercmp(uint8_t* pBuffer1, uint8_t* pBuffer2, uint32_t BufferLength)
 {
   while(BufferLength--)
   {
@@ -62,6 +61,7 @@ int Buffercmp(uint8_t* pBuffer1, uint8_t* pBuffer2, uint32_t BufferLength)
   }
   return 1;
 }
+#endif
 /**
   * @brief  检查是否要忽略文件夹或文件
   * @param  check_name[in] 要检查的文件名,全路径

@@ -51,13 +51,6 @@ BOOL RES_DevInit(void)
   #else
     if(QSPI_FLASH_Init() == 0)
     {
-      QSPI_FLASH_WriteStatusReg(1,0X00);
-      QSPI_FLASH_WriteStatusReg(2,0X00);
-      QSPI_FLASH_WriteStatusReg(3,0X61);
-      GUI_DEBUG("\r\nFlash Status Reg1 is 0x%02X", QSPI_FLASH_ReadStatusReg(1));	
-      GUI_DEBUG("\r\nFlash Status Reg2 is 0x%02X", QSPI_FLASH_ReadStatusReg(2));
-      GUI_DEBUG("\r\nFlash Status Reg3 is 0x%02X", QSPI_FLASH_ReadStatusReg(3));    
-      //RES_DevTest();
       return TRUE;
     }
   #endif

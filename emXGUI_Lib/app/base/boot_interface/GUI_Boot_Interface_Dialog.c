@@ -93,7 +93,7 @@ static	LRESULT	win_proc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
       /* 本窗口垂直分为2份 */
 
       /* 根据图片数据创建PNG_DEC句柄 */
-      png_dec = PNG_Open((u8 *)bootlogo, bootlogo_size());
+//      png_dec = PNG_Open((u8 *)bootlogo, bootlogo_size());
       /* 把图片转换成bitmap */
       PNG_GetBitmap(png_dec, &png_bm);
       

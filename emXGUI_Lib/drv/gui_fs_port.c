@@ -14,30 +14,27 @@
 #include "ff.h"
 
 #if defined(STM32F429_439xx)
-#include "sdio/bsp_sdio_sd.h"
-#elif defined(STM32H743xx)
-  #if defined(STM32H750xx)
+ #include "sdio/bsp_sdio_sd.h"
+ 
+#elif defined(STM32H743xx) || defined(STM32H750xx)
   #include "./sd_card/bsp_sdio_sd.h"
   #include "ff_gen_drv.h"
   char SDPath[4]; /* SD逻辑驱动器路径 */
   extern Diskio_drvTypeDef  SD_Driver;
-  #else
-  #include "./sd_card/bsp_sdio_sd.h"
-  #endif
+	
 #elif defined(STM32F767xx)
-#include "./sdmmc/bsp_sdmmc_sd.h"
-#include "ff_gen_drv.h"
-char SDPath[4]; /* SD逻辑驱动器路径 */
-extern Diskio_drvTypeDef  SD_Driver;
+	#include "./sdmmc/bsp_sdmmc_sd.h"
+	#include "ff_gen_drv.h"
+	char SDPath[4]; /* SD逻辑驱动器路径 */
+	extern Diskio_drvTypeDef  SD_Driver;
+	
 #elif defined(CPU_MIMXRT1052DVL6B)
-#include "./bsp/sd_fatfs_test/bsp_sd_fatfs_test.h"
-
-#define BUFFER_SIZE (100U)
-
-SDK_ALIGN(uint8_t g_bufferWrite[SDK_SIZEALIGN(BUFFER_SIZE, SDMMC_DATA_BUFFER_ALIGN_CACHE)],
-          MAX(SDMMC_DATA_BUFFER_ALIGN_CACHE, SDMMCHOST_DMA_BUFFER_ADDR_ALIGN));
-SDK_ALIGN(uint8_t g_bufferRead[SDK_SIZEALIGN(BUFFER_SIZE, SDMMC_DATA_BUFFER_ALIGN_CACHE)],
-          MAX(SDMMC_DATA_BUFFER_ALIGN_CACHE, SDMMCHOST_DMA_BUFFER_ADDR_ALIGN));
+	#include "./bsp/sd_fatfs_test/bsp_sd_fatfs_test.h"
+	#define BUFFER_SIZE (100U)
+	SDK_ALIGN(uint8_t g_bufferWrite[SDK_SIZEALIGN(BUFFER_SIZE, SDMMC_DATA_BUFFER_ALIGN_CACHE)],
+						MAX(SDMMC_DATA_BUFFER_ALIGN_CACHE, SDMMCHOST_DMA_BUFFER_ADDR_ALIGN));
+	SDK_ALIGN(uint8_t g_bufferRead[SDK_SIZEALIGN(BUFFER_SIZE, SDMMC_DATA_BUFFER_ALIGN_CACHE)],
+						MAX(SDMMC_DATA_BUFFER_ALIGN_CACHE, SDMMCHOST_DMA_BUFFER_ADDR_ALIGN));
 #endif  
 
 
@@ -79,7 +76,7 @@ BOOL FileSystem_Init(void)
 #if defined(STM32F429_439xx) || defined(STM32H743xx) || defined(STM32F767xx) || defined(STM32F10X_HD) || defined(STM32F40_41xxx)
 	//在外部SPI Flash挂载文件系统，文件系统挂载时会对SPI设备初始化
   FRESULT res_sd; 
-#if defined(STM32F767xx) || defined(STM32H750xx)
+#if defined(STM32F767xx) || defined(STM32H750xx) || defined(STM32H743xx)
   FATFS_LinkDriver(&SD_Driver, SDPath);
 #endif
 	res_sd = f_mount(&fs,"0:",1);
@@ -117,7 +114,7 @@ BOOL FileSystem_Init(void)
   {
     printf("》文件系统挂载成功\r\n");
     
-#if 0
+#if 1
     /* 文件系统测试 */
     FileSystem_Test();
 #endif 
@@ -135,12 +132,12 @@ BOOL FileSystem_Init(void)
   return TRUE;
 }
 
-#if 0
+#if 1
 FIL fnew;													/* 文件对象 */
 UINT fnum;            					  /* 文件成功读写数量 */
 BYTE ReadBuffer[1024]={0};        /* 读缓冲区 */
 BYTE WriteBuffer[] =              /* 写缓冲区*/
-"欢迎使用野火STM32 F767开发板 今天是个好日子，新建文件系统测试文件\r\n";  
+"欢迎使用野火STM32开发板 今天是个好日子，新建文件系统测试文件\r\n";  
 
 /**
   * @brief  文件系统读写测试
